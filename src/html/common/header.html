@@ -1,0 +1,82 @@
+<header class="header" id="header"/>
+	
+	<div class="header__wrap wrap">
+
+		<div class="header__title">
+			Московский Технологический Университет
+		</div>
+
+		<div class="header__subtitle">
+			(МИРЭА, МГУПИ, МИТХТ)
+		</div>
+
+		<div class="header__menu menu">
+						
+			<ul class="menu__list">
+				
+								
+				<li class="menu__item">
+					<a href="mtu-about.html" class="link menu__href @@if (currentLink == 'about') { active }">Об университете</a>
+				</li>
+				
+				<li class="menu__item">
+					<a href="mtu-programms.html" class="link menu__href @@if (currentLink == 'programms') { active }">Программы обучения</a>
+				</li>
+				
+				<li class="menu__item">
+					<a href="mtu-conditions.html" class="link menu__href @@if (currentLink == 'conditions') { active }">Условия поступления</a>
+				</li>
+				
+				<li class="menu__item">
+					<a href="mtu-filials.html" class="link menu__href @@if (currentLink == 'filials') { active }">Филиалы</a>
+				</li>
+				
+				<li class="menu__item">
+					<a href="mtu-college.html" class="link menu__href @@if (currentLink == 'college') { active }">Колледж</a>
+				</li>
+				
+				<li class="menu__item">
+					<a href="mtu-schools.html" class="link menu__href @@if (currentLink == 'schools') { active }">Предложение для школ</a>
+				</li>
+				
+				<li class="menu__item">
+					<a href="mtu-scholarship.html" class="link menu__href @@if (currentLink == 'scholarship') { active }">Стипендиальная программа</a>
+				</li>
+				
+				@@ if (server !== 'mosreg'){
+				<li class="menu__item">
+					<a href="https://networks.dnevnik.ru/1000000616671" class="link menu__href menu__href--dnevnik">Группа МИРЭА</a>
+				</li>
+				}
+				@@ if (server === 'mosreg'){
+				<li class="menu__item">
+					<a href="https://networks.school.mosreg.ru/1000000588061" class="link menu__href menu__href--mosreg">Группа МИРЭА</a>
+				</li>
+				}
+				
+				<li class="menu__item" style="display: none;">
+					<a href="http://www.priem.mirea.ru/forms/news/?utm_source=dnevnik&utm_medium=site&utm_campaign=april2016" class="button button--yellow button--m" target="_blank" style="font-size: 15px; position: relative; top: -6px;">Подписка на новости</a>
+				</li>
+			
+			</ul> <!-- /.menu -->
+			
+		</div><!-- /.header__menu -->
+
+		<div class="header__subscribe header-subscribe">
+
+			<div class="header-subscribe__text">
+				<p>
+					Хотите быть в курсе важных событий Университета и Приемной комиссии? Подпишитесь на новости Московского технологического университета!
+				</p>
+
+			</div><!-- /.header-subscribe__text -->
+
+			<div class="header-subscribe__button-placeholder">
+				<a href="http://www.priem.mirea.ru/forms/news/?utm_source=dnevnik&utm_medium=site&utm_campaign=april2016" class="button button--yellow button--m" target="_blank" style="font-size: 15px;">Подписка на новости</a>
+			</div><!-- /.header-subscribe__button-placeholder -->
+
+		</div><!-- /.header__subscribe -->
+	
+	</div> <!-- .header__wrap -->
+
+</header> <!-- /.header -->
