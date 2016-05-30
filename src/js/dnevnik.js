@@ -1,5 +1,7 @@
 'use strict'
 
+import 'babel-polyfill';
+
 import app from './app';
 
 

@@ -39,6 +39,14 @@
   }
 }
 
+
+@mixin wrap{
+	@include clearfix;
+	margin: auto;
+	padding: 0 0px;
+	width: 980px;
+}
+
 @mixin bg2x($name){
 
   $url: '../images/bg/' + $name;

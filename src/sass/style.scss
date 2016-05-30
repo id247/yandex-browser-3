@@ -3,9 +3,10 @@
 @import "_variables";
 @import "_sprites";
 @import "_mixins";
-@import "_forms";
-@import "_main";
-@import "_helpers";
+@import "global";
+@import "forms";
+@import "main";
+@import "helpers";
 
 /* @media only screen and (min-width: 740px){
   @import "_tablet" ;
