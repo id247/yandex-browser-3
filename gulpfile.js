@@ -135,11 +135,15 @@ gulp.task('vers', function(){
 				const href = node.attrs && node.attrs['href'] ? node.attrs['href'] : false;
 				
 				//if no href or it is external
-				if (!href || href.indexOf('http') === 0 || href.indexOf('.html') === -1){
+				if (!href || href.indexOf('http') === 0){
 					return node;
 				}
 
-				node.attrs['href'] =  href.replace('.html', '');
+				if (href.indexOf('.html') === href.length - 5){
+					node.attrs['href'] =  href.replace('.html', '');
+				}else if (href.indexOf('assets/') === 0){
+					node.attrs['href'] =  href.replace('assets/', CDN);
+				}				
 
 				return node;
 			})
@@ -178,7 +182,7 @@ gulp.task('vers', function(){
 			return node;
 		}
 
-		node.attrs[attrName]=  CDN + attr.replace('assets/', '') + '?_v=' + version;
+		node.attrs[attrName]=  attr.replace('assets/', CDN) + '?_v=' + version;
 		return node;
 	}
 
