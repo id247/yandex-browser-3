@@ -3,6 +3,11 @@
 export default (function App(window, document, $){
 	console.log('run');
 
+	var maxHeight = 800;
+	var maxWidth = 1024;
+
+	var isNativeScrollEnabled = true;
+
 	function _scrollMeTo(){
 		
 		$('.js-goto').on('click', function(e){
@@ -19,6 +24,174 @@ export default (function App(window, document, $){
 		});
 
 	};
+
+
+	function _scroll(){
+		var isScrolling = false;
+		var $html = $('html');
+		var $sections = $('.section');
+		
+		var scrollDirection;
+		var winHeight;
+
+		function scrollMeTo(e, index){
+
+			var $target = $sections.eq(index);
+
+			if ($target.length === 1) {
+
+				e.preventDefault();
+
+				isScrolling = true;
+
+				$sections.addClass('section--scrolling');
+
+				var scrollTop = $target.offset().top;
+
+				if (scrollDirection == 'up'){
+					scrollTop += ($target.outerHeight() - winHeight);
+				}
+
+				$('body,html').animate({ 
+					scrollTop: scrollTop,
+					easing: 'ease-in'
+				}, 900, function(){
+					isScrolling = false;
+					$sections.removeClass('section--scrolling');
+				});
+			};
+		}
+
+		function smoothScroll(e){
+
+			if (isScrolling){
+				e.preventDefault();
+				return;
+			}		
+
+			if (e.keyCode){
+				
+				if(e.keyCode === 38) {
+					scrollDirection = 'up';
+				}
+				else if (e.keyCode === 40){
+					scrollDirection = 'down';
+				}
+
+			}else{
+
+				if(e.deltaY > 0) {
+					scrollDirection = 'up';
+				}
+				else{
+					scrollDirection = 'down';
+				}
+
+			}
+
+			$sections.each(function(index, section){
+				
+				var rect = this.getBoundingClientRect();
+
+				var rectTop = Math.round(rect.top);
+				var rectBottom = Math.round(rect.bottom);
+
+				if (
+					rectTop >= -(winHeight / 2)
+					&& rectTop <= winHeight / 2
+					&& rectBottom <= winHeight * 1.5
+					){
+					
+					if ( scrollDirection  == 'up' && index > 0 ){
+						
+						if ( rectTop < 0 && rectBottom < winHeight ){
+							
+							scrollMeTo(e, index);
+						
+						}else if( rectTop >= 0 ){
+							
+							scrollMeTo(e, index - 1);
+						}
+
+					}else if ( scrollDirection  == 'down' && index < $sections.length ){ 
+
+						if( rectBottom <= winHeight ){
+							
+							scrollMeTo(e, index + 1);
+						
+						}else if( rectTop > 0 ){	
+						
+							scrollMeTo(e, index);
+						}
+
+					}
+				}
+
+			});
+		}
+
+		function enableScroll(e){
+			if (!isNativeScrollEnabled && !$html.hasClass('fancybox-lock')){
+				smoothScroll(e);
+			}	
+		}
+
+		function resize(){
+			winHeight = ( window.innerHeight || document.documentElement.clientHeight );
+			
+			if ( winHeight > maxHeight && $(window).width() > maxWidth ){
+				isNativeScrollEnabled = false;
+			}else{
+				isNativeScrollEnabled = true;
+			}
+		}
+		resize();
+
+		$(window).on('resize', function(e){
+			resize();
+		});		
+
+		$(window).on('mousewheel', function(e){
+			enableScroll(e);
+		});		
+
+		$(document).keydown(function(e){
+			if (e.keyCode === 38 || e.keyCode === 40){
+				enableScroll(e);			
+			}
+		});		
+	}
+
+	function _sections(){
+		var $sections = $('.section');
+
+		function resize(){
+			
+			var winHeight = $(window).height();
+
+			$sections.each(function(){
+				var $section = $(this);
+				var height = winHeight;
+
+				if (($section).data('scroll') !== 'enable'){
+					return;
+				}
+				
+				if (winHeight > maxHeight){
+					$(this).css('height', height);
+				}else{
+					$(this).css('height', '');
+				}
+				
+			});
+		}
+
+		resize();
+
+		$(window).on('resize', function(e){
+			resize();
+		});
+	}
 
 	function _header(){
 		const $header = $('header');
@@ -37,6 +210,8 @@ export default (function App(window, document, $){
 
 	function init(){
 		_header();
+		_sections();
+		_scroll();
 		_scrollMeTo();
 	}
 
