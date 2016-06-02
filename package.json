@@ -1,8 +1,8 @@
 {
-  "name": "project",
+  "name": "yandex-browser-3",
   "version": "1.0.0",
   "description": "",
-  "cdn": "https://ad.csdnevnik.ru/special/staging/folder/",
+  "cdn": "https://ad.csdnevnik.ru/special/staging/yandex-3/",
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
