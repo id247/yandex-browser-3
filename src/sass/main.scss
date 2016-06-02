@@ -8,9 +8,376 @@
 	position: relative;
 }
 
+.wrap{
+	@include clearfix;
+	max-width: 1160px;
+	margin: auto;
+}
+
 /* ==========================================================================
  * main
  * ========================================================================== */
 
+.logo{
+	text-indent: -9999px;
+	text-align: left;
+	display: inline-block;
 
- 
+	&--dnevnik{
+		@include sprite($logotype);
+	}
+}
+
+.screen{
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+
+	&:before{
+		content: '';
+		display: block;
+		position: absolute;
+		top: 40px;
+		left: 35px;
+		right: 35px;
+		bottom: 0;
+		box-shadow: 0 0 60px rgba(0,0,0,.5); 
+	}
+
+	&--wide-shadow:before{
+		top: 30px;
+		left: 25px;
+		right: 25px;
+		box-shadow: 0 0 90px rgba(0,0,0,.5); 
+	}
+
+	&__image{
+		position: relative;
+		display: block;
+		
+		&--border{
+			overflow: hidden;
+			border-radius: 5px;
+		}
+
+		&--border-blue{
+			border: 1px solid #1d5284;
+		}
+
+		&--border-grey{
+			border: 1px solid #1d5284;
+		}
+	}
+}
+
+/* ==========================================================================
+  * header
+  * ========================================================================== */
+  
+.header{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 500;
+	padding: 15px 0 25px;
+
+	transition: all .2s;
+	
+	@media (min-height: 800px){
+		position: fixed;
+		transform: translateZ(0);
+	}
+
+	&.scrolled{
+		background: #fff;
+		box-shadow: 0 0 15px rgba(0,0,0,.2);
+	}
+
+	&__logo{
+		float: left;
+	}
+
+	&__menu{
+		margin: 7px 0 0;
+		float: right;
+	}
+}
+
+/* ==========================================================================
+ * menu
+ * ========================================================================== */
+
+.menu{
+
+	&__list{
+		margin: 0 0 -10px;
+	}
+
+	&__item{
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0 0 10px 15px;
+
+		&:first-child{
+			margin-left: 0;
+		}
+	}
+
+	&__href{
+		color: #1374b0;
+		font-size: 16px;
+	}
+}
+
+/* ==========================================================================
+ * section
+ * ========================================================================== */
+
+.section{
+	width: 100%;
+	display: table;		
+	min-height: 90vh;
+	text-align: center;
+
+	&__inner{
+		display: table-cell;
+		vertical-align: middle;
+		padding: 90px 0 90px;
+	}
+
+	&__half{		
+		display: inline-block;
+		vertical-align: middle;
+		width: 49%;
+		text-align: left;
+	}
+
+	&__title{
+		font-size: 36px;
+		line-height: (64/48);
+		font-weight: 300px;
+		margin: 0 0 15px;
+	}
+
+	&__text{
+		color: #646464;
+		font-size: 24px;
+		font-weight: 300;
+	}
+}
+
+/* ==========================================================================
+ * home
+ * ========================================================================== */
+
+.home{
+	background: #f6f8fa;
+	&__inner{
+		padding-top: 180px;
+	}
+
+	&__title{
+		font-size: 48px;
+	}
+	
+	 &__screen-placeholder{
+		position: relative;
+		left: -50%;
+	}
+	
+	&__content{
+	
+	}
+}
+/* ==========================================================================
+ * dnevnik
+ * ========================================================================== */
+
+.dnevnik{
+	
+	&__screen-placeholder{
+		position: relative;
+		right: -10%;
+	}
+}
+
+/* ==========================================================================
+ * antishock
+ * ========================================================================== */
+
+
+.antishock{
+	background: #f6f8fa url(../images/bg/antishock.jpg) 0 0 repeat;
+
+	text-align: center;
+
+	&__inner{
+		padding-top: 100px;
+	}
+
+	&__title{
+		position: relative;
+
+		&:before{
+			content: '';
+			display: block;
+			position: absolute;
+			top: -10px;
+			left: -75px;
+			@include sprite($antishock);
+		}
+	}
+	
+	&__screen-placeholder{
+		text-align: center;
+		margin: 0 100px 0 0;
+	}
+
+	&__content{
+
+	}
+
+	&__screen{
+		position: relative;
+		//left: -50%;
+	}
+}
+
+/* ==========================================================================
+ * antivirus
+ * ========================================================================== */
+
+.antivirus{
+	&__screen-placeholder{
+		position: relative;
+		right: -10%;
+	}
+}
+
+/* ==========================================================================
+ * fast
+ * ========================================================================== */
+
+.fast{
+	background: #f6f8fa;
+	&__screen-placeholder{
+		position: relative;
+		left: -10%;
+	}
+}
+
+/* ==========================================================================
+ * fast
+ * ========================================================================== */
+
+.background{
+	&__screen-placeholder{
+		position: relative;
+		right: -10%;
+	}
+
+	&__content{
+		margin: 0 0 30px;
+	}
+
+	&__change{
+		
+	}
+}
+
+.background-change{
+
+	&__list{
+		
+	}
+
+	&__item{
+		display: inline-block;
+		vertical-align: top;
+		margin: 0 0 0 10px;
+
+		&:first-child{
+			margin-left: 0;
+		}
+	}
+
+	&__label{
+		cursor: pointer;
+		display: block;
+	}
+
+	&__input{
+		display: none;
+
+		&:checked + .background-change__image-placeholder{
+			border-color: #959595;
+			box-shadow: 0 0 15px rgba(0,0,0,.4);
+		}
+	}
+
+	&__image-placeholder{
+		display: block;
+		border: 1px solid transparent;
+
+		border-radius: 5px;
+		overflow: hidden;
+	}
+
+	&__image{
+		display: block;
+	}
+}
+
+/* ==========================================================================
+ * settings
+ * ========================================================================== */
+
+.settings{
+	background: #fed536;
+
+	&__content{
+		margin: 0 0 50px;
+	}
+
+	&__images{
+		
+	}
+}
+
+.settings-images{
+
+	&__list{
+		margin: 0 -200px;
+		position: relative;
+		&:before{
+			content: '';
+			display: block;
+			@include sprite($arrow);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+
+		}
+	}
+
+	&__item{
+		display: inline-block;
+		vertical-align: top;
+		margin: 0 100px;
+	}
+}
+
+/* ==========================================================================
+ * footer
+ * ========================================================================== */
+
+.footer{
+	min-height: 0;
+	padding: 100px 0;
+
+	&__text{
+		margin: 0 0 40px;
+	}
+}

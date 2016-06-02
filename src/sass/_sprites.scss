@@ -11,22 +11,44 @@ $icon-home: x y offset_x offset_y width height total_width total_height image_pa
 At the bottom of this section, we provide information about the spritesheet itself
 $spritesheet: width height image $spritesheet-sprites;
 */
+$antishock-name: 'antishock';
+$antishock-x: 0px;
+$antishock-y: 58px;
+$antishock-offset-x: 0px;
+$antishock-offset-y: -58px;
+$antishock-width: 63px;
+$antishock-height: 63px;
+$antishock-total-width: 184px;
+$antishock-total-height: 121px;
+$antishock-image: '../images/sprite.png';
+$antishock: (0px, 58px, 0px, -58px, 63px, 63px, 184px, 121px, '../images/sprite.png', 'antishock', );
+$arrow-name: 'arrow';
+$arrow-x: 0px;
+$arrow-y: 0px;
+$arrow-offset-x: 0px;
+$arrow-offset-y: 0px;
+$arrow-width: 88px;
+$arrow-height: 58px;
+$arrow-total-width: 184px;
+$arrow-total-height: 121px;
+$arrow-image: '../images/sprite.png';
+$arrow: (0px, 0px, 0px, 0px, 88px, 58px, 184px, 121px, '../images/sprite.png', 'arrow', );
 $logotype-name: 'logotype';
-$logotype-x: 0px;
+$logotype-x: 88px;
 $logotype-y: 0px;
-$logotype-offset-x: 0px;
+$logotype-offset-x: -88px;
 $logotype-offset-y: 0px;
-$logotype-width: 148px;
-$logotype-height: 52px;
-$logotype-total-width: 148px;
-$logotype-total-height: 52px;
+$logotype-width: 96px;
+$logotype-height: 34px;
+$logotype-total-width: 184px;
+$logotype-total-height: 121px;
 $logotype-image: '../images/sprite.png';
-$logotype: (0px, 0px, 0px, 0px, 148px, 52px, 148px, 52px, '../images/sprite.png', 'logotype', );
-$spritesheet-width: 148px;
-$spritesheet-height: 52px;
+$logotype: (88px, 0px, -88px, 0px, 96px, 34px, 184px, 121px, '../images/sprite.png', 'logotype', );
+$spritesheet-width: 184px;
+$spritesheet-height: 121px;
 $spritesheet-image: '../images/sprite.png';
-$spritesheet-sprites: ($logotype, );
-$spritesheet: (148px, 52px, '../images/sprite.png', $spritesheet-sprites, );
+$spritesheet-sprites: ($antishock, $arrow, $logotype, );
+$spritesheet: (184px, 121px, '../images/sprite.png', $spritesheet-sprites, );
 
 /*
 The provided mixins are intended to be used with the array-like variables
