@@ -271,9 +271,9 @@ export default (function App(window, document, $){
 
 		image.onload = () => {
 			$image.attr('src', image.src);
-			$image.show();
-			$video.hide();
-			$preloader.hide();
+			$image.removeClass('hidden');
+			$video.addClass('hidden');
+			$preloader.addClass('hidden');
 		}
 
 		let video = new XMLHttpRequest();
@@ -282,9 +282,9 @@ export default (function App(window, document, $){
 		    $video.attr('src', URL.createObjectURL(video.response));
 		    $video[0].play();
 		    setTimeout( () => {
-		   		$image.hide();
-				$video.show();
-				$preloader.hide();
+		    	$video.removeClass('hidden');
+		   		$image.addClass('hidden');				
+				$preloader.addClass('hidden');
 			}, 300);
 		};
 		
@@ -323,7 +323,7 @@ export default (function App(window, document, $){
 
 		$radio.on('change', function(e){
 			const value = $(this).val();
-			$preloader.show();	
+			$preloader.removeClass('hidden');	
 			setTimeout( () => {
 				load(value);
 			}, 300);

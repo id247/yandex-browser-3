@@ -341,7 +341,7 @@
 .background-screen{
 	position: relative;
 	width: 790px;
-	height: 450px;
+	height: 444px;
 	overflow: hidden;
 	border-radius: 5px;
 	transform: rotate(0.000001deg);
@@ -358,11 +358,11 @@
 	&__video{
 		min-width: 100%;
 		min-height: 100%;
-		width: auto;
+		//width: auto;
+		width: 100%;
 		height: auto;	
+		//height: 100%;
 		position: relative;
-		-webkit-backface-visibility: hidden;
-		-webkit-transform: translateZ(0);
 	}
 
 	&__search{
@@ -390,8 +390,6 @@
 		right: 0;
 		bottom: 0;
 		background: rgba(0,0,0,.7);
-
-		display: none;
 
 		&:before{
 			content: '';
