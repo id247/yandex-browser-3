@@ -87,13 +87,13 @@
 
 	transition: box-shadow .2s;
 	
-	@media (min-height: 650px) and (min-width: 1160px){
+	@media (min-height: 650px) and (min-width: 1181px){
 		position: fixed;
 		transform: translateZ(0);
 	}
 
 	&.scrolled{
-		@media (min-height: 650px) and (min-width: 1160px){
+		@media (min-height: 650px) and (min-width: 1181px){
 			background: #fff;
 			box-shadow: 0 0 15px rgba(0,0,0,.2);
 		}

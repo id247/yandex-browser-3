@@ -23,7 +23,7 @@ export default (function App(window, document, $){
 		}
 	})();
 
-	function _scrollMeTo(){
+	function scrollMeTo(){
 		
 		$('.js-goto').on('click', function(e){
 			var $target = $(this.href.replace( /^.*\#/, '#' ) );
@@ -41,7 +41,7 @@ export default (function App(window, document, $){
 	};
 
 
-	function _scroll(){
+	function scroll(){
 		var isScrolling = false;
 		var $html = $('html');
 		var $sections = $('.section');
@@ -177,7 +177,7 @@ export default (function App(window, document, $){
 		});		
 	}
 
-	function _sections(){
+	function sections(){
 		var $sections = $('.section');
 
 		function resize(){
@@ -208,7 +208,7 @@ export default (function App(window, document, $){
 		});
 	}
 
-	function _header(){
+	function header(){
 		const $header = $('header');
 
 		function fix(){
@@ -224,16 +224,14 @@ export default (function App(window, document, $){
 	}
 
 
-	function _menu(){
+	function menu(){
 		var $menuHrefs = $('.menu__href');
 		var $sections = $('.section');
 
 		var winHeight = ( window.innerHeight || document.documentElement.clientHeight );
 
-		function setActive(){
-						
-			$sections.each(function(index, section){
-				
+		function setActive(){						
+			$sections.each(function(index, section){				
 				var sectionId = $(this).attr('id');
 				var rect = this.getBoundingClientRect();
 				var rectTop = Math.round(rect.top);
@@ -243,10 +241,8 @@ export default (function App(window, document, $){
 					$menuHrefs.removeClass('active');
 					$menuHrefs.filter('[href="#' + sectionId + '"]').addClass('active');
 				}
-
 			});
 		}
-
 		setActive();
 
 		$(window).on('scroll', function(e){
@@ -254,93 +250,110 @@ export default (function App(window, document, $){
 		});
 
 		$(window).on('resize', function(e){
-			winHeight = ( window.innerHeight || document.documentElement.clientHeight );
-			
+			winHeight = ( window.innerHeight || document.documentElement.clientHeight );			
 			setActive();
 		});
 
 	}
 
-	function _backgtounds(){
+	function backgtounds(){
 		const $radio = $('.js-bg-change-input');
 		const $image = $('.js-bg-change-image');
 		const $video = $('.js-bg-change-video');
 		const $preloader = $('.js-bg-change-preloader');
 
+		//preload containers
 		let image = document.createElement('img');
+		let video = new XMLHttpRequest();
 
-		image.onload = () => {
+		//image		
+		function imageLoad(e){
 			$image.attr('src', image.src);
 			$image.removeClass('hidden');
 			$video.addClass('hidden');
 			$preloader.addClass('hidden');
 		}
-
-		let video = new XMLHttpRequest();
-
-		video.onload = () => {
+		image.onload = imageLoad;
+		
+		//video
+		function videoLoad(e){
 		    $video.attr('src', URL.createObjectURL(video.response));
 		    $video[0].play();
 		    setTimeout( () => {
 		    	$video.removeClass('hidden');
 		   		$image.addClass('hidden');				
 				$preloader.addClass('hidden');
-			}, 300);
-		};
-		
-		video.ontimeout = (err) => {
-			console.error(err);
+			}, 300);			
 		}
-		
-		video.onprogress = (e) => {
+		function videoTimeout(err){
+			console.error(err);
+			$preloader.addClass('hidden');
+		}
+		function videoProgress(e){
 			if (e.lengthComputable){
 				var percentComplete = parseInt( (e.loaded / e.total) * 100 );
-
 				console.log(percentComplete);
 			}
 		}
+		video.onload = videoLoad;		
+		video.ontimeout = videoTimeout;		
+		video.onprogress = videoProgress;
 
-		function load(value){					
-
+		function select(value){	
+			let src;	
 			if (value.indexOf('.jpg') > -1){
-
-				const src = $image.attr('src').replace(/\/[^\/]+\.jpg/, '/' + value);
-				console.log(value, src);
+				src = $image.attr('src').replace(/\/[^\/]+\.jpg/, '/' + value);				
 				image.src = src;
-
 			}else if (value.indexOf('.mp4') > -1){
-
-				const src = $video.data('src') + value;
-				console.log(value, src);
-				
+				src = $video.data('src') + value;
 				video.open('GET', src);
 				video.timeout = 15123;
 				video.responseType = 'blob';
 				video.send();
-
 			}
+			console.log(value, src);
 		}
 
 		$radio.on('change', function(e){
 			const value = $(this).val();
 			$preloader.removeClass('hidden');	
 			setTimeout( () => {
-				load(value);
+				select(value);
 			}, 300);
 		});
+	}
+
+	function downloadLinks(){
+		let os = 'Windows'; //win by default
+		const clientStrings = [
+			{s:'Windows', r:/Windows/},
+			{s:'Android', r:/Android/},
+			{s:'iOS', r:/(iPhone|iPad|iPod)/},
+			{s:'Mac', r:/Mac OS X/},
+			{s:'Mac', r:/(MacPPC|MacIntel|Mac_PowerPC|Macintosh)/},
+		];
+		for (var id in clientStrings) {
+			var cs = clientStrings[id];
+			if (cs.r.test(navigator.userAgent)) {
+				os = cs.s;
+				break;
+			}
+		}
+		$('.js-download-link').attr('href', YAdownloadLinks[os]);
 	}
 
 	function init(){
 
 		if (!isMobile){
-			_header();
-			_sections();
-			_scroll();
+			header();
+			sections();
+			scroll();
 		}
 
-		_backgtounds();
-		_scrollMeTo();
-		_menu();
+		backgtounds();
+		scrollMeTo();
+		menu();
+		downloadLinks();
 	}
 
 	return {
