@@ -1,14 +1,21 @@
 @charset "UTF-8";
 
-// @font-face {
-//     font-family: 'font';
-//     src: url('../fonts/fonr.woff') format('woff');
-//     font-weight: normal;
-//     font-style: normal;
-// }
+@font-face {
+    font-family: 'TextbookNew';
+    src: url('../fonts/TextbookNew.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TextbookNew';
+    src: url('../fonts/TextbookNew-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
 
 
-$mainFontFamily: HelveticaNeue, sans-serif;
+$mainFontFamily: TextbookNew, HelveticaNeue, sans-serif;
 
 //
 //colors

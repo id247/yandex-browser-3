@@ -10,7 +10,7 @@
 
 .wrap{
 	@include clearfix;
-	max-width: 1160px;
+	width: 1160px;
 	margin: auto;
 }
 
@@ -51,22 +51,23 @@
 		box-shadow: 0 0 90px rgba(0,0,0,.5); 
 	}
 
+	&__border{
+		position: relative;
+		overflow: hidden;
+		border-radius: 5px;
+
+		&--blue{
+			border: 1px solid #1d5284;
+		}
+
+		&--grey{
+			border: 1px solid #acacac;
+		}
+	}
+
 	&__image{
 		position: relative;
 		display: block;
-		
-		&--border{
-			overflow: hidden;
-			border-radius: 5px;
-		}
-
-		&--border-blue{
-			border: 1px solid #1d5284;
-		}
-
-		&--border-grey{
-			border: 1px solid #1d5284;
-		}
 	}
 }
 
@@ -80,18 +81,20 @@
 	left: 0;
 	right: 0;
 	z-index: 500;
-	padding: 15px 0 25px;
+	padding: 12px 0 20px;
 
 	transition: box-shadow .2s;
 	
-	@media (min-height: 800px){
+	@media (min-height: 650px) and (min-width: 1160px){
 		position: fixed;
 		transform: translateZ(0);
 	}
 
 	&.scrolled{
-		background: #fff;
-		box-shadow: 0 0 15px rgba(0,0,0,.2);
+		@media (min-height: 650px) and (min-width: 1160px){
+			background: #fff;
+			box-shadow: 0 0 15px rgba(0,0,0,.2);
+		}
 	}
 
 	&__logo{
@@ -99,7 +102,7 @@
 	}
 
 	&__menu{
-		margin: 7px 0 0;
+		margin: 5px 0 0;
 		float: right;
 	}
 }
@@ -147,7 +150,7 @@
 	&__inner{
 		display: table-cell;
 		vertical-align: middle;
-		padding: 90px 0 90px;
+		padding: 100px 0 80px;
 	}
 
 	&__half{		
@@ -160,7 +163,7 @@
 	&__title{
 		font-size: 36px;
 		line-height: (64/48);
-		font-weight: 300px;
+		font-weight: 300;
 		margin: 0 0 15px;
 	}
 
@@ -178,7 +181,7 @@
 .home{
 	background: #f6f8fa;
 	&__inner{
-		padding-top: 180px;
+		//padding-top: 180px;
 	}
 
 	&__title{

@@ -3,8 +3,8 @@
 export default (function App(window, document, $){
 	console.log('run');
 
-	var maxHeight = 800;
-	var maxWidth = 1024;
+	var maxHeight = 650;
+	var maxWidth = 1160;
 
 	var isNativeScrollEnabled = true;
 
@@ -212,7 +212,7 @@ export default (function App(window, document, $){
 		const $header = $('header');
 
 		function fix(){
-			if ( $(window).scrollTop() > 50 ){
+			if ( $(window).scrollTop() > 0 ){
 				$header.addClass('scrolled');
 			}else{
 				$header.removeClass('scrolled');
