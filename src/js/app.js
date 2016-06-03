@@ -328,7 +328,8 @@ export default (function App(window, document, $){
 		const clientStrings = [
 			{s:'Windows', r:/Windows/},
 			{s:'Android', r:/Android/},
-			{s:'iOS', r:/(iPhone|iPad|iPod)/},
+			{s:'iPhone', r:/(iPhone|iPod)/},
+			{s:'iPad', r:/iPad/},
 			{s:'Mac', r:/Mac OS X/},
 			{s:'Mac', r:/(MacPPC|MacIntel|Mac_PowerPC|Macintosh)/},
 		];
