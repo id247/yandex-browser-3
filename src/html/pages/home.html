@@ -336,7 +336,7 @@
 					
 							<label class="background-change__label">
 								
-								<input type="radio" name="bg" value="1" class="background-change__input" checked>
+								<input type="radio" name="bg" value="1.jpg" class="background-change__input js-bg-change-input" checked>
 								
 								<span class="background-change__image-placeholder">
 									
@@ -352,7 +352,7 @@
 					
 							<label class="background-change__label">
 								
-								<input type="radio" name="bg" value="2" class="background-change__input">
+								<input type="radio" name="bg" value="2.jpg" class="background-change__input js-bg-change-input">
 								
 								<span class="background-change__image-placeholder">
 									
@@ -368,7 +368,7 @@
 					
 							<label class="background-change__label">
 								
-								<input type="radio" name="bg" value="3" class="background-change__input">
+								<input type="radio" name="bg" value="3.jpg" class="background-change__input js-bg-change-input">
 								
 								<span class="background-change__image-placeholder">
 									
@@ -384,7 +384,7 @@
 					
 							<label class="background-change__label">
 								
-								<input type="radio" name="bg" value="4" class="background-change__input">
+								<input type="radio" name="bg" value="4.jpg" class="background-change__input js-bg-change-input">
 								
 								<span class="background-change__image-placeholder">
 									
@@ -400,7 +400,7 @@
 					
 							<label class="background-change__label">
 								
-								<input type="radio" name="bg" value="5" class="background-change__input">
+								<input type="radio" name="bg" value="video.mp4" class="background-change__input js-bg-change-input">
 								
 								<span class="background-change__image-placeholder">
 									
@@ -426,7 +426,33 @@
 
 						<div class="screen__border screen__border--grey">
 
-							<img src="assets/images/screens/dnevnik.jpg" alt="browser" class="screen__image">
+							<div class="background-screen">
+								
+								<img src="assets/images/backgrounds/1.jpg" alt="background-screen" class="background-screen__image js-bg-change-image">
+								
+								@@if (server === "local"){
+								<video src="" data-src="assets/videos/" class="background-screen__video js-bg-change-video" loop mute></video>
+								}
+								
+								@@if (server !== "local"){
+								<video src="" data-src="https://ad.csdnevnik.ru/special/staging/yandex-3/videos/" class="background-screen__video js-bg-change-video" loop mute></video>
+								}
+
+								<div class="background-screen__search">
+								
+								</div>
+
+								<div class="background-screen__links">
+									
+									<img src="assets/images/backgrounds/links.jpg" alt="links" class="background-screen__links-image">
+
+								</div><!-- /.background-screen__links -->
+
+								<div class="background-screen__preloader js-bg-change-preloader">
+									
+								</div><!-- /.background-screen__preloader -->
+
+							</div><!-- /.background-screen -->
 
 						</div><!-- /.screen__border -->
 

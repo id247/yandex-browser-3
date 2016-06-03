@@ -261,6 +261,75 @@ export default (function App(window, document, $){
 
 	}
 
+	function _backgtounds(){
+		const $radio = $('.js-bg-change-input');
+		const $image = $('.js-bg-change-image');
+		const $video = $('.js-bg-change-video');
+		const $preloader = $('.js-bg-change-preloader');
+
+		let image = document.createElement('img');
+
+		image.onload = () => {
+			$image.attr('src', image.src);
+			$image.show();
+			$video.hide();
+			$preloader.hide();
+		}
+
+		let video = new XMLHttpRequest();
+
+		video.onload = () => {
+		    $video.attr('src', URL.createObjectURL(video.response));
+		    $video[0].play();
+		    setTimeout( () => {
+		   		$image.hide();
+				$video.show();
+				$preloader.hide();
+			}, 300);
+		};
+		
+		video.ontimeout = (err) => {
+			console.error(err);
+		}
+		
+		video.onprogress = (e) => {
+			if (e.lengthComputable){
+				var percentComplete = parseInt( (e.loaded / e.total) * 100 );
+
+				console.log(percentComplete);
+			}
+		}
+
+		function load(value){					
+
+			if (value.indexOf('.jpg') > -1){
+
+				const src = $image.attr('src').replace(/\/[^\/]+\.jpg/, '/' + value);
+				console.log(value, src);
+				image.src = src;
+
+			}else if (value.indexOf('.mp4') > -1){
+
+				const src = $video.data('src') + value;
+				console.log(value, src);
+				
+				video.open('GET', src);
+				video.timeout = 15123;
+				video.responseType = 'blob';
+				video.send();
+
+			}
+		}
+
+		$radio.on('change', function(e){
+			const value = $(this).val();
+			$preloader.show();	
+			setTimeout( () => {
+				load(value);
+			}, 300);
+		});
+	}
+
 	function init(){
 
 		if (!isMobile){
@@ -269,6 +338,7 @@ export default (function App(window, document, $){
 			_scroll();
 		}
 
+		_backgtounds();
 		_scrollMeTo();
 		_menu();
 	}
